@@ -1,4 +1,4 @@
-// Som receptionist vill jag kunna se alla bokningar som gjorts för att få en överblick över hur beläggningen av hotellet ser ut.
+// Som en gäst vill jag kunna avboka mitt rum ifall jag inte längre kan komma.
 
 exports.handler = async (event, context) => {
   console.log('Hello, world!');
