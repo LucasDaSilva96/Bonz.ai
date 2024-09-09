@@ -67,7 +67,75 @@ resources:
         AttributeDefinitions:
           - AttributeName: id
             AttributeType: S
+          - AttributeName: created_at
+            AttributeType: S
+          - AttributeName: rooms
+            AttributeType: L
+          - AttributeName: status
+            AttributeType: S
+          - AttributeName: price
+            AttributeType: N
+          - AttributeName: amount_of_rooms
+            AttributeType: N
+          - AttributeName: amount_of_guests
+            AttributeType: N
+          - AttributeName: check_in
+            AttributeType: S
+          - AttributeName: check_out
+            AttributeType: S
+          - AttributeName: guest_name
+            AttributeType: S
+          - AttributeName: guest_email
+            AttributeType: S
         KeySchema:
           - AttributeName: id
+            KeyType: HASH
+          - AttributeName: created_at
+            KeyType: HASH
+          - AttributeName: rooms
+            KeyType: HASH
+          - AttributeName: status
+            KeyType: HASH
+          - AttributeName: price
+            KeyType: HASH
+          - AttributeName: amount_of_rooms
+            KeyType: HASH
+          - AttributeName: amount_of_guests
+            KeyType: HASH
+          - AttributeName: check_in
+            KeyType: HASH
+          - AttributeName: check_out
+            KeyType: HASH
+          - AttributeName: guest_name
+            KeyType: HASH
+          - AttributeName: guest_email
+            KeyType: HASH
+        BillingMode: PAY_PER_REQUEST
+
+    RoomsDB:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: rooms-db
+        AttributeDefinitions:
+          - AttributeName: id
+            AttributeType: S
+          - AttributeName: created_at
+            AttributeType: S
+          - AttributeName: type
+            AttributeType: S
+          - AttributeName: price
+            AttributeType: N
+          - AttributeName: amount_of_people
+            AttributeType: N
+        KeySchema:
+          - AttributeName: id
+            KeyType: HASH
+          - AttributeName: created_at
+            KeyType: HASH
+          - AttributeName: type
+            KeyType: HASH
+          - AttributeName: price
+            KeyType: HASH
+          - AttributeName: amount_of_people
             KeyType: HASH
         BillingMode: PAY_PER_REQUEST
