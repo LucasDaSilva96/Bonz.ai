@@ -28,6 +28,10 @@ https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/HowItWorks.Nami
 
 https://www.serverless.com/plugins/serverless-dotenv-plugin
 
+## Day.js
+
+https://day.js.org/docs/en/installation/installation
+
 ## Booking Example
 
 {
