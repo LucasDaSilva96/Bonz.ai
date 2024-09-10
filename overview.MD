@@ -68,3 +68,28 @@ room_type: Suite,
 capacity: 3,
 price: 1500
 }
+
+## Create (Put Item)
+
+```
+  const { db } = require('./db'); // Import the db instance from db.js
+
+  async function createItem() {
+  const params = {
+  TableName: 'YourTableName',
+  Item: {
+  id: '123', // Partition Key
+  name: 'John Doe',
+  age: 30,
+  },
+  };
+
+  try {
+  await db.put(params);
+  console.log('Item inserted successfully');
+  } catch (err) {
+  console.error('Error inserting item:', err);
+  }
+    }
+
+```
