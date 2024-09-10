@@ -93,3 +93,129 @@ price: 1500
     }
 
 ```
+
+## Read (Get Item)
+
+```
+  const { db } = require('./db'); // Import the db instance from db.js
+
+  async function getItem() {
+  const params = {
+    TableName: 'YourTableName',
+    Key: {
+      id: '123',  // Partition Key
+    },
+  };
+
+  try {
+    const data = await db.get(params);
+    console.log('Item retrieved:', data.Item);
+  } catch (err) {
+    console.error('Error retrieving item:', err);
+  }
+}
+
+
+```
+
+## Update (Update Item)
+
+```
+const { db } = require('./db'); // Import the db instance from db.js
+
+async function updateItem() {
+  const params = {
+    TableName: 'YourTableName',
+    Key: {
+      id: '123',  // Partition Key
+    },
+    UpdateExpression: 'set #name = :name, age = :age',
+    ExpressionAttributeNames: {
+      '#name': 'name',
+    },
+    ExpressionAttributeValues: {
+      ':name': 'Jane Doe',
+      ':age': 28,
+    },
+    ReturnValues: 'UPDATED_NEW',  // Return the updated attributes
+  };
+
+  try {
+    const data = await db.update(params);
+    console.log('Item updated:', data.Attributes);
+  } catch (err) {
+    console.error('Error updating item:', err);
+  }
+}
+
+```
+
+## Delete (Delete Item)
+
+```
+const { db } = require('./db'); // Import the db instance from db.js
+
+async function deleteItem() {
+  const params = {
+    TableName: 'YourTableName',
+    Key: {
+      id: '123',  // Partition Key
+    },
+  };
+
+  try {
+    await db.delete(params);
+    console.log('Item deleted successfully');
+  } catch (err) {
+    console.error('Error deleting item:', err);
+  }
+}
+
+```
+
+## Query
+
+```
+const { db } = require('./db'); // Import the db instance from db.js
+
+async function queryItems() {
+  const params = {
+    TableName: 'YourTableName',
+    KeyConditionExpression: 'id = :id',
+    ExpressionAttributeValues: {
+      ':id': '123',
+    },
+  };
+
+  try {
+    const data = await db.query(params);
+    console.log('Query result:', data.Items);
+  } catch (err) {
+    console.error('Error querying items:', err);
+  }
+}
+
+
+```
+
+## Scan
+
+```
+const { db } = require('./db'); // Import the db instance from db.js
+
+async function scanTable() {
+  const params = {
+    TableName: 'YourTableName',
+  };
+
+  try {
+    const data = await db.scan(params);
+    console.log('Scan result:', data.Items);
+  } catch (err) {
+    console.error('Error scanning table:', err);
+  }
+}
+
+
+
+```
