@@ -34,21 +34,24 @@ https://day.js.org/docs/en/installation/installation
 
 ## Booking Example
 
+**Example**
 {
-id: 123,
-number_of_rooms: 2,
-number_of_guests: 2,
-rooms: [],
-name: John Doe,
-email: john_doe@example.com
-check_in: 2024-09-10,
-check_out: 2024-09-12,
-total_price: 1000,
-status: Confirmed
-policy: You can cancel your reservation up until 2 days prior to arrival date without charge.
+"name": "John Doe",
+"email": "test@io.com",
+"amount_of_people": 7,
+"check_in": "2024-10-10",
+"check_out": "2024-10-11",
+"rooms": [
+{
+"type": "Single",
+"amount": 7
+},
+{
+"type": "Double",
+"amount": 7
 }
-
-## Rooms Example
+]
+}
 
 #### Single room:
 

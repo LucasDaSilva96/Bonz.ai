@@ -55,7 +55,7 @@ functions:
     events:
       - httpApi:
           path: /deleteBooking/{id}
-          method: post
+          method: delete
 
   updateBooking:
     handler: functions/updateBooking/index.handler
@@ -63,6 +63,12 @@ functions:
       - httpApi:
           path: /updateBooking/{id}
           method: put
+  getBookingById:
+    handler: functions/getBookingById/index.handler
+    events:
+      - httpApi:
+          path: /getBookingById/{id}
+          method: get
 
 # Define the resources that this project will use. In this case, a DynamoDB table.
 resources:
