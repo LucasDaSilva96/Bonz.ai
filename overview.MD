@@ -45,6 +45,7 @@ check_in: 2024-09-10,
 check_out: 2024-09-12,
 total_price: 1000,
 status: Confirmed
+policy: You can cancel your reservation up until 2 days prior to arrival date without charge.
 }
 
 ## Rooms Example
