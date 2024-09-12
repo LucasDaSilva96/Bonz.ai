@@ -17,7 +17,7 @@ const MAX_ROOMS = 20;
 
 exports.handler = async (event) => {
   try {
-    const { id, created_at, guests, rooms, checkInDate, checkOutDate, guestName, guestEmail } = JSON.parse(event.body);
+    const { id, guests, rooms, checkInDate, checkOutDate, guestName, guestEmail } = JSON.parse(event.body);
 
     // Validate input
     let totalCapacity = 0;
@@ -64,7 +64,6 @@ exports.handler = async (event) => {
 
     const updatedBooking = {
       id,
-      created_at,
       guests,
       rooms,
       checkInDate,
@@ -77,7 +76,7 @@ exports.handler = async (event) => {
 
     const updateCommand = new UpdateCommand({
       TableName: 'booking-db',
-      Key: { id, created_at },
+      Key: { id, },
       UpdateExpression: 'set guests = :guests, rooms = :rooms, checkInDate = :checkInDate, checkOutDate = :checkOutDate, guestName = :guestName, guestEmail = :guestEmail, totalCost = :totalCost, updated_at = :updated_at',
       ExpressionAttributeValues: {
         ':guests': guests,
