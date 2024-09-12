@@ -1,6 +1,5 @@
 // Som en gäst vill jag kunna ändra min bokning ifall mina planer ändras.
 
-const { v4: uuidv4 } = require('uuid');
 const dayjs = require('dayjs');
 const { ScanCommand, UpdateCommand } = require('@aws-sdk/lib-dynamodb');
 const { db } = require('../../services/db');
@@ -17,7 +16,15 @@ const MAX_ROOMS = 20;
 
 exports.handler = async (event) => {
   try {
-    const { id, guests, rooms, checkInDate, checkOutDate, guestName, guestEmail } = JSON.parse(event.body);
+    const {
+      id,
+      guests,
+      rooms,
+      checkInDate,
+      checkOutDate,
+      guestName,
+      guestEmail,
+    } = JSON.parse(event.body);
 
     // Validate input
     let totalCapacity = 0;
@@ -37,7 +44,9 @@ exports.handler = async (event) => {
     }
 
     if (totalRooms > MAX_ROOMS) {
-      throw new Error(`You cannot book more than ${MAX_ROOMS} rooms in a single booking.`);
+      throw new Error(
+        `You cannot book more than ${MAX_ROOMS} rooms in a single booking.`
+      );
     }
 
     // Query the database to get the total number of rooms already booked
@@ -56,7 +65,9 @@ exports.handler = async (event) => {
 
     // Ensure the updated booking does not exceed the hotel capacity
     if (roomsBooked + totalRooms > MAX_ROOMS) {
-      throw new Error('The total number of rooms booked exceeds the hotel capacity.');
+      throw new Error(
+        'The total number of rooms booked exceeds the hotel capacity.'
+      );
     }
 
     const nights = dayjs(checkOutDate).diff(dayjs(checkInDate), 'day');
@@ -76,8 +87,9 @@ exports.handler = async (event) => {
 
     const updateCommand = new UpdateCommand({
       TableName: 'booking-db',
-      Key: { id, },
-      UpdateExpression: 'set guests = :guests, rooms = :rooms, checkInDate = :checkInDate, checkOutDate = :checkOutDate, guestName = :guestName, guestEmail = :guestEmail, totalCost = :totalCost, updated_at = :updated_at',
+      Key: { id },
+      UpdateExpression:
+        'set guests = :guests, rooms = :rooms, checkInDate = :checkInDate, checkOutDate = :checkOutDate, guestName = :guestName, guestEmail = :guestEmail, totalCost = :totalCost, updated_at = :updated_at',
       ExpressionAttributeValues: {
         ':guests': guests,
         ':rooms': rooms,
