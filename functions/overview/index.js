@@ -8,7 +8,7 @@ module.exports.handler = async (event) => {
   };
 
   try {
-    const data = await db.scan(params).promise(); // Skannar tabellen
+    const data = await db.scan(params); // Skannar tabellen
     return sendResponse(data.Items);
   } catch (err) {
     console.error('Error scanning table:', err);
