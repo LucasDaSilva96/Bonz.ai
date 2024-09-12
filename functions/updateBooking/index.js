@@ -26,6 +26,10 @@ exports.handler = async (event) => {
       guestEmail,
     } = JSON.parse(event.body);
 
+    rooms.forEach((room) => {
+      room.type = room.type.toLowerCase();
+    });
+
     // Validate input
     let totalCapacity = 0;
     let totalCost = 0;
