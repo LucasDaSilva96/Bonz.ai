@@ -9,13 +9,13 @@ const { db } = require('../../services/db');
 exports.handler = async (event) => {
   // Parse the request body
   const body = JSON.parse(event.body);
-  const { guestName, guestEmail, guests, checkInDate, checkOutDate, rooms } =
+  const { guests, rooms, checkInDate, checkOutDate, guestName, guestEmail } =
     body;
 
   // Validate the request body
   try {
-    if (!guestName) throw new Error('Guest guestName is missing');
-    if (!guestEmail) throw new Error('Guest guestEmail is missing');
+    if (!guestName) throw new Error('Guest name is missing');
+    if (!guestEmail) throw new Error('Guest email is missing');
     if (!guests) throw new Error('Amount of people is missing');
     if (guests < 1) throw new Error('Invalid amount of people');
     if (!checkInDate) throw new Error('Check-in date is missing');
@@ -47,7 +47,7 @@ exports.handler = async (event) => {
 
     // Save the booking to the database
     await db.put({
-      TableguestName: 'booking-db',
+      TableName: 'booking-db',
       Item: booking,
     });
 
