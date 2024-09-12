@@ -9,14 +9,14 @@ const { db } = require('../../services/db');
 exports.handler = async (event) => {
   // Parse the request body
   const body = JSON.parse(event.body);
-  const { name, email, amount_of_people, check_in, check_out, rooms } = body;
+  const { name, email, guests, check_in, check_out, rooms } = body;
 
   // Validate the request body
   try {
     if (!name) throw new Error('Guest name is missing');
     if (!email) throw new Error('Guest email is missing');
-    if (!amount_of_people) throw new Error('Amount of people is missing');
-    if (amount_of_people < 1) throw new Error('Invalid amount of people');
+    if (!guests) throw new Error('Amount of people is missing');
+    if (guests < 1) throw new Error('Invalid amount of people');
     if (!check_in) throw new Error('Check-in date is missing');
     if (!check_out) throw new Error('Check-out date is missing');
     if (!rooms) throw new Error('Room types are missing');
@@ -38,7 +38,7 @@ exports.handler = async (event) => {
     const booking = await createBooking(
       name,
       email,
-      amount_of_people,
+      guests,
       check_in,
       check_out,
       rooms
