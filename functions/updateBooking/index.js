@@ -38,9 +38,9 @@ exports.handler = async (event) => {
       if (!ROOM_TYPES[room.type]) {
         throw new Error(`Invalid room type: ${room.type}`);
       }
-      totalCapacity += ROOM_TYPES[room.type].capacity * room.quantity;
-      totalCost += ROOM_TYPES[room.type].price * room.quantity;
-      totalRooms += room.quantity;
+      totalCapacity += ROOM_TYPES[room.type].capacity * room.amount;
+      totalCost += ROOM_TYPES[room.type].price * room.amount;
+      totalRooms += room.amount;
     }
 
     if (totalCapacity < guests) {
